@@ -13,6 +13,22 @@ zabbix_export:
       macros:
         - macro: "{$SNMP_COMMUNITY}"
           value: public
+      valuemaps:
+        - uuid: 8c9d7d0fb5f548c9a111111111111001
+          name: Dell SC Global Status
+          mappings:
+            - value: '1'
+              newvalue: Other
+            - value: '2'
+              newvalue: Unknown
+            - value: '3'
+              newvalue: OK
+            - value: '4'
+              newvalue: Warning
+            - value: '5'
+              newvalue: Critical
+            - value: '6'
+              newvalue: Nonrecoverable      
       items:
         - uuid: 7edd8ab9ff0a4bd1b2b5cd7b400b6979
           name: System name
@@ -125,7 +141,7 @@ zabbix_export:
           key: dell.sc.global.status
           delay: 1m
           value_type: UNSIGNED
-          
+
         - uuid: 05200a1ac1f940f4b3034b13b8505a13
           name: Uptime
           type: SNMP_AGENT
