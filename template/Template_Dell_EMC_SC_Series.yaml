@@ -1,37 +1,37 @@
 zabbix_export:
-  version: '7.4'
+  version: "7.4"
   template_groups:
-  - uuid: d0140debe2984e7cba4a5b4109071713
-    name: Templates/Storage
+    - uuid: d0140debe2984e7cba4a5b4109071713
+      name: Templates/Storage
   templates:
-  - uuid: f15574dc339c4e31a50679e3759eb77f
-    template: Template Dell EMC SC Series
-    name: Template Dell EMC SC Series
-    description: Minimal template for Dell EMC SC Series
-    groups:
-    - name: Templates/Storage
-    macros:
-    - macro: '{$SNMP_COMMUNITY}'
-      value: public
-    items:
-    - uuid: 7edd8ab9ff0a4bd1b2b5cd7b400b6979
-      name: System name
-      type: SNMP_AGENT
-      snmp_oid: 1.3.6.1.2.1.1.5.0
-      key: dell.sc.system.name
-      delay: 5m
-      value_type: TEXT
-    - uuid: 2f0a0b28b4ee47ffa791e67d59cee055
-      name: System description
-      type: SNMP_AGENT
-      snmp_oid: 1.3.6.1.2.1.1.1.0
-      key: dell.sc.system.descr
-      delay: 5m
-      value_type: TEXT
-    - uuid: 05200a1ac1f940f4b3034b13b8505a13
-      name: Uptime
-      type: SNMP_AGENT
-      snmp_oid: 1.3.6.1.2.1.1.3.0
-      key: dell.sc.system.uptime
-      delay: 1m
-      units: uptime
+    - uuid: f15574dc339c4e31a50679e3759eb77f
+      template: Template Dell EMC SC Series
+      name: Template Dell EMC SC Series
+      description: Minimal template for Dell EMC SC Series
+      groups:
+        - name: Templates/Storage
+      macros:
+        - macro: "{$SNMP_COMMUNITY}"
+          value: public
+      items:
+        - uuid: 7edd8ab9ff0a4bd1b2b5cd7b400b6979
+          name: System name
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.1.5.0
+          key: dell.sc.system.name
+          delay: 5m
+          value_type: TEXT
+        - uuid: 2f0a0b28b4ee47ffa791e67d59cee055
+          name: System description
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.1.1.0
+          key: dell.sc.system.descr
+          delay: 5m
+          value_type: TEXT
+        - uuid: 05200a1ac1f940f4b3034b13b8505a13
+          name: Uptime
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.1.3.0
+          key: dell.sc.system.uptime
+          delay: 1m
+          units: uptime
