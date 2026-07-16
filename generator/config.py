@@ -8,6 +8,7 @@ TEMPLATE_NAME = "Template_Dell_EMC_SC_Series"
 
 TEMPLATE_GROUP = "Templates/Storage"
 
+# Собственное пространство имен проекта
 UUID_NAMESPACE = uuid.UUID(
-    "6ba7b811-9dad-11d1-80b4-00c04fd430c8"
+    "4c8d8f26-0cb0-4f89-a7e6-7d6cb0d8d1b7"
 )

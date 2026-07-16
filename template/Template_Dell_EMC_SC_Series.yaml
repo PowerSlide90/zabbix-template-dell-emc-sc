@@ -1,0 +1,11 @@
+zabbix_export:
+  version: '7.4'
+  templates:
+    - uuid: 8025991c-4a4d-5b7b-aba5-16d870a26555
+      template: Template_Dell_EMC_SC_Series
+      name: Template_Dell_EMC_SC_Series
+      groups:
+        - name: Templates/Storage
+      macros: []
+      valuemaps: []
+      items: []
