@@ -30,6 +30,24 @@ zabbix_export:
             - value: '6'
               newvalue: Nonrecoverable  
 
+        - uuid: 6f4d8f5ab5b84cf4a111111111111040
+          name: Dell SC Status
+          mappings:
+            - value: '1'
+              newvalue: Up
+            - value: '2'
+              newvalue: Down
+            - value: '3'
+              newvalue: Degraded
+
+      triggers:
+        - uuid: 6f4d8f5ab5b84cf4a111111111111041
+          expression: last(/Template_Dell_EMC_SC_Series/dell.sc.fan1.status)<>1
+          name: Fan 1 status is not Up
+          priority: HIGH
+          tags:
+            - tag: component
+              value: fan
       items:
         - uuid: 7edd8ab9ff0a4bd1b2b5cd7b400b6979
           name: System name
@@ -202,7 +220,7 @@ zabbix_export:
         - uuid: 6f4d8f5ab5b84cf4a111111111111012
           name: Controller A Serial Number
           type: SNMP_AGENT
-          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.6.1
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.8.1
           key: dell.sc.controller1.serial
           delay: 30m
           value_type: TEXT
@@ -210,7 +228,7 @@ zabbix_export:
         - uuid: 6f4d8f5ab5b84cf4a111111111111013
           name: Controller B Serial Number
           type: SNMP_AGENT
-          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.6.2
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.8.2
           key: dell.sc.controller2.serial
           delay: 30m
           value_type: TEXT
@@ -218,7 +236,7 @@ zabbix_export:
         - uuid: 6f4d8f5ab5b84cf4a111111111111014
           name: Controller A Model
           type: SNMP_AGENT
-          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.3.1
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.7.1
           key: dell.sc.controller1.model
           delay: 30m
           value_type: TEXT
@@ -226,7 +244,245 @@ zabbix_export:
         - uuid: 6f4d8f5ab5b84cf4a111111111111015
           name: Controller B Model
           type: SNMP_AGENT
-          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.3.2
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.7.2
           key: dell.sc.controller2.model
           delay: 30m
           value_type: TEXT          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111021
+          name: Controller A Role
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.4.1
+          key: dell.sc.controller.a.role
+          delay: 30m
+          value_type: TEXT
+
+        - uuid: 6f4d8f5ab5b84cf4a111111111111022
+          name: Controller B Role
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.4.2
+          key: dell.sc.controller.b.role
+          delay: 30m
+          value_type: TEXT
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111023
+          name: Controller A Hostname
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.9.1
+          key: dell.sc.controller.a.hostname
+          delay: 30m
+          value_type: TEXT          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111024
+          name: Controller B Hostname
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.9.2
+          key: dell.sc.controller.b.hostname
+          delay: 30m
+          value_type: TEXT          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111027
+          name: Controller A Cache Size
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.11.1
+          key: dell.sc.controller.a.cache.size
+          delay: 30m
+          value_type: UNSIGNED
+          units: GB
+
+        - uuid: 6f4d8f5ab5b84cf4a111111111111028
+          name: Controller B Cache Size
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.13.1.11.2
+          key: dell.sc.controller.b.cache.size
+          delay: 30m
+          value_type: UNSIGNED
+          units: GB          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111029
+          name: Enclosure Name
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.15.1.4.1
+          key: dell.sc.enclosure.name
+          delay: 30m
+          value_type: TEXT          
+          
+        - uuid: 6f4d8f5ab5b84cf4a11111111111102a
+          name: Enclosure Type
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.15.1.6.1
+          key: dell.sc.enclosure.type
+          delay: 30m
+          value_type: TEXT          
+          
+        - uuid: 6f4d8f5ab5b84cf4a11111111111102b
+          name: Enclosure Model
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.15.1.7.1
+          key: dell.sc.enclosure.model
+          delay: 30m
+          value_type: TEXT          
+          
+        - uuid: 6f4d8f5ab5b84cf4a11111111111102c
+          name: Enclosure Serial Number
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.15.1.9.1
+          key: dell.sc.enclosure.serial
+          delay: 30m
+          value_type: TEXT          
+          
+        - uuid: 6f4d8f5ab5b84cf4a11111111111102d
+          name: Enclosure Status
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.15.1.11.1
+          key: dell.sc.enclosure.status
+          delay: 1m
+          value_type: UNSIGNED          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111030
+          name: Fan 1 Speed
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.5.1.1
+          key: dell.sc.fan1.speed
+          delay: 1m
+          value_type: UNSIGNED
+          units: rpm         
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111031
+          name: Fan 2 Speed
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.5.1.2
+          key: dell.sc.fan2.speed
+          delay: 1m
+          value_type: UNSIGNED
+          units: rpm          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111032
+          name: Fan 3 Speed
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.5.1.3
+          key: dell.sc.fan3.speed
+          delay: 1m
+          value_type: UNSIGNED
+          units: rpm          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111033
+          name: Fan 4 Speed
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.5.1.4
+          key: dell.sc.fan4.speed
+          delay: 1m
+          value_type: UNSIGNED
+          units: rpm          
+
+        - uuid: 6f4d8f5ab5b84cf4a111111111111034
+          name: Fan 1 Status
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.3.1.1
+          key: dell.sc.fan1.status
+          delay: 1m
+          value_type: UNSIGNED          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111035
+          name: Fan 2 Status
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.3.1.2
+          key: dell.sc.fan2.status
+          delay: 1m
+          value_type: UNSIGNED          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111036
+          name: Fan 3 Status
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.3.1.3
+          key: dell.sc.fan3.status
+          delay: 1m
+          value_type: UNSIGNED          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111037
+          name: Fan 4 Status
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.3.1.4
+          key: dell.sc.fan4.status
+          delay: 1m
+          value_type: UNSIGNED          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111050
+          name: Fan 1 Name
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.4.1.1
+          key: dell.sc.fan1.name
+          delay: 1h
+          value_type: TEXT          
+          
+        - uuid: 6f4d8f5ab5b84cf4a111111111111051
+          name: Fan 2 Name
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.4.1.2
+          key: dell.sc.fan2.name
+          delay: 1h
+          value_type: TEXT
+
+        - uuid: 6f4d8f5ab5b84cf4a111111111111052
+          name: Fan 3 Name
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.4.1.3
+          key: dell.sc.fan3.name
+          delay: 1h
+          value_type: TEXT
+
+        - uuid: 6f4d8f5ab5b84cf4a111111111111053
+          name: Fan 4 Name
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.4.1.4
+          key: dell.sc.fan4.name
+          delay: 1h
+          value_type: TEXT
+
+        - uuid: 6f4d8f5ab5b84cf4a111111111111054
+          name: Fan 1 Normal Max RPM
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.6.1.1
+          key: dell.sc.fan1.maxrpm
+          delay: 30m
+          value_type: UNSIGNED
+          units: rpm
+
+        - uuid: 6f4d8f5ab5b84cf4a111111111111055
+          name: Fan 1 Normal Min RPM
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.674.11000.2000.500.1.2.16.1.7.1.1
+          key: dell.sc.fan1.minrpm
+          delay: 30m
+          value_type: UNSIGNED
+          units: rpm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          
