@@ -1,8 +1,4 @@
-from uuid import uuid5
+import uuid
 
-from config import UUID_NAMESPACE
-
-
-def make_uuid(object_type: str, key: str):
-
-    return str(uuid5(UUID_NAMESPACE, f"{object_type}:{key}"))
+def make_uuid(object_type: str, key: str) -> str:
+    return str(uuid.uuid5(UUID_NAMESPACE, f"{object_type}:{key}"))
